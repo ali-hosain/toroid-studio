@@ -28,92 +28,125 @@
 </head>
 <body>
 
-  <h1>Privacy Policy</h1>
+  <h1>Privacy Policy for Toroid Studio</h1>
   <p class="updated">Effective date: September 17, 2026 &nbsp;·&nbsp;
      Developer: Ali Hosain &nbsp;·&nbsp;
      App: Toroid Studio</p>
 
   <div class="highlight">
-    <strong>Short version:</strong> Toroid Studio does not collect,
-    sell, or share your personal data or code. Your files stay on
-    your device or your own cloud accounts. AI calls go directly
-    from your device to Anthropic using your own API key.
+    Toroid Studio ("the App," "we," "our") is developed by <strong>Ali Hosain</strong>.
+    This policy explains what data the App collects, how it's used, and the
+    choices you have. Toroid Studio is designed around a simple principle:
+    your code and your credentials stay on your device unless you explicitly
+    choose to share them.
   </div>
 
-  <h2>1. What We Collect</h2>
-  <p>Toroid Studio collects the minimum data necessary to operate:</p>
+  <h2>1. Your code and files</h2>
+  <p>The App never uploads, transmits, or stores the content of your files
+  on any Toroid Studio server. All editing, running, and debugging happens
+  locally on your device. The only exception is if you explicitly enable
+  Cloud Sync (see Section 4) or explicitly send code as context to the AI
+  features you've configured (see Section 3).</p>
+
+  <h2>2. API key storage (bring your own key)</h2>
+  <p>Toroid Studio's AI features (chat, inline completions, agentic edits,
+  commit message generation, etc.) require you to provide your own
+  Anthropic API key. This key is:</p>
   <ul>
-    <li><strong>Nothing by default.</strong> The app works fully
-    offline (except AI features) with no account required.</li>
-    <li><strong>Crash reports (optional):</strong> If you enable
-    crash reporting in Settings → Privacy, anonymized crash data
-    may be sent to Firebase Crashlytics to help us fix bugs.
-    This data does not include file content, API keys, or any
-    personally identifiable information.</li>
-    <li><strong>Feedback submissions (optional):</strong> If you
-    tap "Send Feedback," you may submit a category, description,
-    and optional screenshot. We also attach non-sensitive device
-    metadata: app version, Android version, device model, and
-    enabled runtimes. This never includes file content or API keys.
-    We show you exactly what will be sent before you submit.</li>
+    <li>Stored only on your device, encrypted using the Android Keystore
+    (hardware-backed encryption where available).</li>
+    <li>Never transmitted to, logged by, or stored on any Toroid Studio
+    server.</li>
+    <li>Sent only directly to Anthropic's API when you use an AI feature,
+    exactly as any API client would.</li>
+  </ul>
+  <p>The same on-device, encrypted storage approach is used for any GitHub
+  personal access tokens and Netlify personal access tokens you add for Git
+  and deployment features.</p>
+
+  <h2>3. AI features</h2>
+  <p>When you use an AI feature, relevant context (such as the open file, a
+  selection, or your prompt) is sent directly to Anthropic's API using your
+  own key to generate a response. We do not intercept, log, or retain this
+  content. Review
+  <a href="https://www.anthropic.com/privacy">Anthropic's own privacy policy</a>
+  for how they handle API requests. Agentic Mode never applies a file change
+  without your explicit on-screen approval.</p>
+
+  <h2>4. Cloud Sync (optional)</h2>
+  <p>Cloud Sync is an opt-in feature, off by default, that must be enabled
+  twice — first by signing in with your own Google account, then
+  per-project. When enabled:</p>
+  <ul>
+    <li>Your project files are uploaded only to a folder (named "Toroid
+    Projects") in your own Google Drive, using Google's restricted
+    <code>drive.file</code> scope, which only grants access to files the App
+    itself creates.</li>
+    <li>Toroid Studio never has its own server-side copy of your files —
+    Google Drive is the only remote storage involved.</li>
+    <li>Disabling Cloud Sync stops all future uploads; previously synced
+    files remain in your own Drive under your control.</li>
   </ul>
 
-  <h2>2. Your Code and Files</h2>
-  <p>Your source code, project files, and file contents
-  <strong>never leave your device</strong> except in these two
-  cases you explicitly initiate:</p>
+  <h2>5. Crash reports and analytics</h2>
+  <p>The App includes optional crash reporting and anonymous usage
+  analytics, controlled by two independent toggles in
+  <strong>Settings → Privacy</strong> ("Send crash reports" and "Send
+  anonymous usage analytics"), both enabled by default and changeable at any
+  time. When enabled, coarse diagnostic data (such as a stack trace or an
+  anonymous event name) may be collected to help us fix bugs and improve the
+  App. This data never includes file contents, API keys, tokens, or other
+  credentials. You can opt out at any time in Settings, and the App will
+  honor that choice immediately.</p>
+
+  <h2>6. In-app feedback</h2>
+  <p>If you use the "Send Feedback" feature, we collect:</p>
   <ul>
-    <li><strong>AI requests:</strong> When you use AI features
-    (chat, inline completion, code review, etc.), relevant code
-    context is sent directly from your device to Anthropic's API
-    using <em>your own API key</em>. We never see this data.
-    Anthropic's privacy policy applies:
-    <a href="https://www.anthropic.com/privacy">anthropic.com/privacy</a></li>
-    <li><strong>Cloud sync (Pro tier):</strong> If you enable cloud
-    sync for a project, files are uploaded to <em>your own</em>
-    Google Drive account. We never have access to your Drive or
-    your files.</li>
+    <li>The category (Bug Report, Feature Request, or General Feedback) and
+    description you write.</li>
+    <li>Non-sensitive diagnostic metadata: app version, Android version,
+    device model, which runtimes (Python/Node.js) are enabled, and your
+    selected theme.</li>
+    <li>An optional screenshot of the app screen you were viewing when you
+    opened the feedback form, if you choose to keep it attached (you can
+    remove it before sending).</li>
+    <li>A randomly generated, anonymous install identifier used only to
+    group your own submissions — this is not an advertising ID, device ID,
+    or account identifier, and no sign-in or account is required.</li>
   </ul>
+  <p>Feedback submissions never include file contents, API keys, or
+  Git/Netlify tokens. You can review exactly what will be sent before
+  submitting.</p>
 
-  <h2>3. API Keys and Credentials</h2>
-  <p>Your Anthropic API key, Git tokens, and any other credentials
-  you enter are stored exclusively on your device using Android's
-  Keystore system (hardware-backed encrypted storage). They are
-  never transmitted to us, never logged, and never included in
-  crash reports or feedback submissions.</p>
+  <h2>7. Data we do not collect</h2>
+  <p>Toroid Studio does not collect or require: your name, email address,
+  phone number, precise location, contacts, photos (other than an
+  explicitly attached feedback screenshot), or any advertising identifiers.
+  The App displays no third-party advertising.</p>
 
-  <h2>4. Third-Party Services</h2>
-  <ul>
-    <li><strong>Anthropic API</strong> — processes AI requests
-    using your API key. See
-    <a href="https://www.anthropic.com/privacy">Anthropic's privacy policy</a>.</li>
-    <li><strong>Google Drive</strong> — used for cloud sync if you
-    enable it, under your own Google account.</li>
-    <li><strong>Firebase Crashlytics</strong> — anonymized crash
-    reporting, only if enabled in Settings.</li>
-    <li><strong>Netlify</strong> — used for deploy if you configure
-    it with your own Netlify token.</li>
-  </ul>
+  <h2>8. Data sharing</h2>
+  <p>We do not sell your data. Data is shared only as described above: with
+  Anthropic (when you use an AI feature, via your own key), with Google
+  (only if you enable Cloud Sync, to your own Drive), and with Netlify (only
+  if you use the Deploy feature, via your own token).</p>
 
-  <h2>5. Children's Privacy</h2>
-  <p>Toroid Studio is a developer tool intended for users aged 13
-  and older. We do not knowingly collect data from children under
-  13.</p>
+  <h2>9. Children's privacy</h2>
+  <p>Toroid Studio is not directed at children under 13, and we do not
+  knowingly collect personal information from children.</p>
 
-  <h2>6. Changes to This Policy</h2>
-  <p>We may update this policy as the app evolves. The effective
-  date at the top will always reflect the latest version. For
-  significant changes, we will notify users via an in-app notice.
-  </p>
+  <h2>10. Changes to this policy</h2>
+  <p>We may update this policy as the App evolves. Material changes will be
+  reflected in the "Effective date" above.</p>
 
-  <h2>7. Contact Us</h2>
-  <p>Questions about this policy or your data? Contact us at:<br>
-  📧 <a href="mailto:alihosain4c@gmail.com">alihosain4c@gmail.com</a>
-  </p>
+  <h2>11. Contact</h2>
+  <p>Questions about this policy or your data can be sent to:<br>
+  📧 <a href="mailto:alihosain4c@gmail.com">alihosain4c@gmail.com</a></p>
 
   <hr style="margin-top:40px;border:none;border-top:1px solid #eee">
   <p style="color:#aaa;font-size:13px;text-align:center">
-    © 2026 Ali Hosain · Toroid Studio
+    © 2026 Ali Hosain · Toroid Studio<br>
+    The current version of this policy is always available at
+    <a href="https://ali-hosain.github.io/toroid-studio/privacy-policy.html">ali-hosain.github.io/toroid-studio/privacy-policy.html</a>
   </p>
 
 </body>
