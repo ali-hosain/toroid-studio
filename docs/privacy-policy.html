@@ -29,7 +29,7 @@
 <body>
 
   <h1>Privacy Policy for Toroid Studio</h1>
-  <p class="updated">Effective date: September 17, 2026 &nbsp;·&nbsp;
+  <p class="updated">Effective date: September 21, 2026 &nbsp;·&nbsp;
      Developer: Ali Hosain &nbsp;·&nbsp;
      App: Toroid Studio</p>
 
@@ -50,15 +50,18 @@
 
   <h2>2. API key storage (bring your own key)</h2>
   <p>Toroid Studio's AI features (chat, inline completions, agentic edits,
-  commit message generation, etc.) require you to provide your own
-  Anthropic API key. This key is:</p>
+  commit message generation, etc.) require you to provide your own API key
+  for an AI provider of your choice: Anthropic (Claude) or, optionally,
+  OpenRouter (selectable in <strong>Settings &rarr; AI</strong>). Each key
+  is:</p>
   <ul>
     <li>Stored only on your device, encrypted using the Android Keystore
     (hardware-backed encryption where available).</li>
     <li>Never transmitted to, logged by, or stored on any Toroid Studio
     server.</li>
-    <li>Sent only directly to Anthropic's API when you use an AI feature,
-    exactly as any API client would.</li>
+    <li>Sent only directly to the provider you selected (Anthropic's API, or
+    OpenRouter's API at openrouter.ai) when you use an AI feature, exactly
+    as any API client would &mdash; never through Toroid Studio servers.</li>
   </ul>
   <p>The same on-device, encrypted storage approach is used for any GitHub
   personal access tokens and Netlify personal access tokens you add for Git
@@ -66,11 +69,18 @@
 
   <h2>3. AI features</h2>
   <p>When you use an AI feature, relevant context (such as the open file, a
-  selection, or your prompt) is sent directly to Anthropic's API using your
-  own key to generate a response. We do not intercept, log, or retain this
+  selection, or your prompt) is sent directly to your selected provider
+  &mdash; Anthropic's API, or OpenRouter's API if you choose OpenRouter
+  &mdash; using your own key to generate a response. We do not intercept, log, or retain this
   content. Review
   <a href="https://www.anthropic.com/privacy">Anthropic's own privacy policy</a>
-  for how they handle API requests. Agentic Mode never applies a file change
+  or
+  <a href="https://openrouter.ai/privacy">OpenRouter's</a>
+  for how they handle API requests. OpenRouter is a routing service: it
+  forwards your request to the model provider behind the model ID you choose
+  (for example a free community-hosted model), and that provider's data
+  handling and logging practices apply in addition to OpenRouter's, so check
+  them before sending sensitive code. Agentic Mode never applies a file change
   without your explicit on-screen approval.</p>
 
   <h2>4. Cloud Sync (optional)</h2>
@@ -118,27 +128,52 @@
   Git/Netlify tokens. You can review exactly what will be sent before
   submitting.</p>
 
-  <h2>7. Data we do not collect</h2>
+  <h2>7. Donations (optional)</h2>
+  <p>Toroid Studio offers optional, one-time in-app donations ("Support
+  Toroid Studio" in <strong>Settings → About</strong>). If you choose to
+  donate:</p>
+  <ul>
+    <li>The purchase is processed entirely by <strong>Google Play</strong>.
+    We never see, receive, or store your payment details (card number,
+    billing address, or similar). Google's own privacy policy and terms
+    govern that transaction.</li>
+    <li>Donations are voluntary and <strong>do not affect the App's
+    functionality or unlock any features</strong>. Every feature works the
+    same whether or not you donate, and a donation is not a Pro
+    subscription.</li>
+    <li>The App does not collect your name or any account information in
+    connection with a donation. Donation purchases are consumed on your
+    device immediately so the same option can be chosen again; no donation
+    history is kept by us.</li>
+  </ul>
+  <p>The App also links to an external sponsorship page (such as GitHub
+  Sponsors or Buy Me a Coffee). That link opens in your browser and is
+  handled by that third-party service under its own privacy policy, not by
+  the App.</p>
+
+  <h2>8. Data we do not collect</h2>
   <p>Toroid Studio does not collect or require: your name, email address,
   phone number, precise location, contacts, photos (other than an
   explicitly attached feedback screenshot), or any advertising identifiers.
   The App displays no third-party advertising.</p>
 
-  <h2>8. Data sharing</h2>
+  <h2>9. Data sharing</h2>
   <p>We do not sell your data. Data is shared only as described above: with
-  Anthropic (when you use an AI feature, via your own key), with Google
-  (only if you enable Cloud Sync, to your own Drive), and with Netlify (only
-  if you use the Deploy feature, via your own token).</p>
+  Anthropic or OpenRouter (whichever you select for AI features, via your own
+  key), with Google
+  (only if you enable Cloud Sync, to your own Drive), with Netlify (only
+  if you use the Deploy feature, via your own token), and with Google Play
+  (only if you make a donation, as described in Section 7).</p>
 
-  <h2>9. Children's privacy</h2>
+  <h2>10. Children's privacy</h2>
   <p>Toroid Studio is not directed at children under 13, and we do not
   knowingly collect personal information from children.</p>
 
-  <h2>10. Changes to this policy</h2>
+  <h2>11. Changes to this policy</h2>
   <p>We may update this policy as the App evolves. Material changes will be
   reflected in the "Effective date" above.</p>
 
-  <h2>11. Contact</h2>
+  <h2>12. Contact</h2>
   <p>Questions about this policy or your data can be sent to:<br>
   📧 <a href="mailto:alihosain4c@gmail.com">alihosain4c@gmail.com</a></p>
 
