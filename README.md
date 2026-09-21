@@ -145,6 +145,8 @@ Toroid Studio is a full-featured mobile IDE for Android that brings desktop-clas
 
 > **Coming soon to Google Play Store.**
 
+📖 [Full User Guide](./USER_GUIDE.md)
+
 ---
 
 ## 🔐 Privacy
