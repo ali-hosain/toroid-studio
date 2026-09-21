@@ -755,3 +755,4 @@ Other things to check:
   server in the current build.
 - AI quality, speed and availability depend on the provider and model you choose,
   and free models can be busy.
+  
