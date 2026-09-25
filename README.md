@@ -32,6 +32,7 @@ Toroid Studio is a full-featured mobile IDE for Android that brings desktop-clas
 - **AI Docstring Generator** — Auto-generate docstrings/comments (approval-gated)
 - **Semantic Codebase Search** — Ask "where is X handled?" and jump to the answer
 - **BYOK Model** — Bring your own Claude API key; your code never touches our servers
+- **OpenRouter (optional)** — Use OpenRouter as an alternative provider, with a live model catalog
 
 ### 📝 Code Editor
 - Syntax highlighting for Python, JavaScript, TypeScript, Kotlin, Java, HTML/CSS, JSON, Markdown and more
@@ -39,6 +40,7 @@ Toroid Studio is a full-featured mobile IDE for Android that brings desktop-clas
 - Split-screen editing (side-by-side or top/bottom)
 - Multi-cursor support (where available)
 - Code folding, line numbers, wrap toggle
+- One-tap **Black** (Python) and **Prettier** (JS/TS/web) formatting
 - 3 custom themes: **Forge Dark**, **Forge Midnight**, **Forge Light**
 - Font size, tab width, and editor preferences
 
@@ -86,7 +88,7 @@ Toroid Studio is a full-featured mobile IDE for Android that brings desktop-clas
 - AI commit message generation
 - AI pre-commit code review
 
-### ☁️ Cloud Sync (Pro)
+### ☁️ Cloud Sync (Pro, coming soon)
 - Google Drive sync for app-managed Projects
 - Conflict handling: conflicting-copy fallback (never silent overwrite)
 - Per-project opt-in with explicit disclosure before first sync
@@ -114,7 +116,8 @@ Toroid Studio is a full-featured mobile IDE for Android that brings desktop-clas
 ### 📊 Productivity
 - Home screen widget (recent projects, tap-to-open)
 - Productivity dashboard (commits, files edited, coding time — local only)
-- In-app feedback & bug reporting (Firebase Firestore backend, opt-in)
+- In-app feedback & bug reporting (Firebase Firestore, only when you choose to send)
+- Optional donations via Google Play to support development — unlocks nothing
 - Accessibility: TalkBack labels, font-scale support, WCAG AA contrast
 
 ---
@@ -127,7 +130,7 @@ Toroid Studio is a full-featured mobile IDE for Android that brings desktop-clas
 | Editor | Sora Editor (syntax highlighting, Forge themes) |
 | DI | Hilt |
 | Database | Room (workspaces, tabs, snippets, stats) |
-| AI | Claude API (`claude-sonnet-4-6` / `claude-haiku-4-5`) via `AiProvider` interface |
+| AI | Claude API (`claude-sonnet-4-6` / `claude-haiku-4-5`) via `AiProvider` interface; optional OpenRouter |
 | LSP | Custom JSON-RPC client mirroring LspClient architecture |
 | Debugger | DAP client (`DapClient`) + `debugpy` via Chaquopy |
 | Git | JGit 6.10 (pure Java, no shell dependency) |
@@ -136,8 +139,14 @@ Toroid Studio is a full-featured mobile IDE for Android that brings desktop-clas
 | Billing | Google Play Billing v7 |
 | Sync | Google Drive REST API (user's own account) |
 | Deploy | Netlify API |
-| Crash | Firebase Crashlytics (opt-out toggle) |
-| Feedback | Firebase Firestore (opt-in) |
+| Crash & Analytics | Firebase Crashlytics + Analytics (separate opt-out toggles) |
+| Feedback | Firebase Firestore (sent only on request) |
+
+---
+
+## 💛 Support
+
+Toroid Studio is built by one developer. If it helps you, you can leave an optional one-time donation in the app (**Settings → Support Toroid Studio**). Donations are handled by Google Play and unlock nothing — every feature stays free for everyone.
 
 ---
 
@@ -151,7 +160,7 @@ Toroid Studio is a full-featured mobile IDE for Android that brings desktop-clas
 
 ## 🔐 Privacy
 
-Toroid Studio does not collect, sell, or share your personal data or code.
+Toroid Studio never uploads your code and never sells your data. Optional anonymous crash reports and usage analytics (Firebase) can be turned off any time in **Settings → Privacy**.
 
 👉 [Privacy Policy](https://ali-hosain.github.io/toroid-studio/privacy-policy.html)
 
@@ -162,7 +171,7 @@ Toroid Studio does not collect, sell, or share your personal data or code.
 **Ali Hosain** — Android, iOS & Web Developer from Rajshahi, Bangladesh.
 
 - GitHub: [@ali-hosain](https://github.com/ali-hosain)
-- Email: [alihosain4c@gmail.com](mailto:alihosain4c@gmail.com)
+- Email: [hello@alihosain.com](mailto:hello@alihosain.com)
 
 ---
 
