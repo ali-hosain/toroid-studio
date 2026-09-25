@@ -35,18 +35,18 @@ Toroid Studio is a full-featured mobile IDE for Android that brings desktop-clas
 - **OpenRouter (optional)** — Use OpenRouter as an alternative provider, with a live model catalog
 
 ### 📝 Code Editor
-- Syntax highlighting for Python, JavaScript, TypeScript, Kotlin, Java, HTML/CSS, JSON, Markdown and more
+- Syntax highlighting for Python, JavaScript, TypeScript, Kotlin, Java, HTML/CSS, JSON, XML, YAML, Markdown, Shell and more
 - Multiple tabs with unsaved-change indicators
 - Split-screen editing (side-by-side or top/bottom)
-- Multi-cursor support (where available)
 - Code folding, line numbers, wrap toggle
-- One-tap **Black** (Python) and **Prettier** (JS/TS/web) formatting
-- 3 custom themes: **Forge Dark**, **Forge Midnight**, **Forge Light**
+- One-tap **Black** formatting for Python (Prettier for JS/TS with the optional Node runtime)
+- 3 custom themes: **Toroid Dark**, **Toroid Midnight**, **Toroid Light**
 - Font size, tab width, and editor preferences
+- Run & debug: **Python today**, more languages coming soon. Other languages get full editing, highlighting, Git and AI help
 
 ### 🔍 Language Server Protocol (LSP)
 - **Python** — Real diagnostics, go-to-definition, hover docs, autocomplete (via custom Jedi/pyflakes server)
-- **TypeScript/JavaScript** — Full LSP via `typescript-language-server` (requires Node runtime)
+- **TypeScript/JavaScript** — via `typescript-language-server` (needs the optional Node runtime, not included in the current Play Store build)
 - Squiggly underlines for errors/warnings
 - Tap-to-see-message diagnostics
 - Back-navigation stack for go-to-definition
@@ -72,10 +72,9 @@ Toroid Studio is a full-featured mobile IDE for Android that brings desktop-clas
 - In-app **pip package manager** — install pure-Python packages with a UI
 - Writes to `requirements.txt` automatically
 
-### 🟨 Node.js Runtime (Optional)
-- `nodejs-mobile` v18 (arm64, opt-in to keep base APK small)
-- `node script.js` with live terminal output
-- `fs`, `crypto`, `require`, `https.get` all working
+### 🟨 Node.js Runtime (Optional, coming soon)
+- Planned for a future update: `node script.js` with live terminal output
+- Not included in the current Play Store build, to keep the app small
 
 ### 🌿 Git & Source Control
 - Clone (HTTPS + GitHub PAT, stored encrypted)
@@ -102,7 +101,7 @@ Toroid Studio is a full-featured mobile IDE for Android that brings desktop-clas
 ### 📦 Project Tools
 - App-managed Projects with real filesystem paths (Git/terminal compatible)
 - SAF folder support for plain editing
-- Project templates: Python script, Node script, static HTML/CSS/JS
+- Project templates: Python script, static HTML/CSS/JS
 - Global search & replace (regex, per-file grouping, Replace All)
 - Command palette with fuzzy search
 - Snippets manager (user-defined + Python defaults)
@@ -116,7 +115,7 @@ Toroid Studio is a full-featured mobile IDE for Android that brings desktop-clas
 ### 📊 Productivity
 - Home screen widget (recent projects, tap-to-open)
 - Productivity dashboard (commits, files edited, coding time — local only)
-- In-app feedback & bug reporting (Firebase Firestore, only when you choose to send)
+- In-app feedback & bug reporting (Firebase Firestore, only when you choose to send; screenshots are never attached unless you choose to)
 - Optional donations via Google Play to support development — unlocks nothing
 - Accessibility: TalkBack labels, font-scale support, WCAG AA contrast
 
@@ -127,7 +126,7 @@ Toroid Studio is a full-featured mobile IDE for Android that brings desktop-clas
 | Layer | Technology |
 |---|---|
 | UI | Jetpack Compose + Material 3 |
-| Editor | Sora Editor (syntax highlighting, Forge themes) |
+| Editor | Sora Editor (syntax highlighting, Toroid themes) |
 | DI | Hilt |
 | Database | Room (workspaces, tabs, snippets, stats) |
 | AI | Claude API (`claude-sonnet-4-6` / `claude-haiku-4-5`) via `AiProvider` interface; optional OpenRouter |
@@ -135,8 +134,8 @@ Toroid Studio is a full-featured mobile IDE for Android that brings desktop-clas
 | Debugger | DAP client (`DapClient`) + `debugpy` via Chaquopy |
 | Git | JGit 6.10 (pure Java, no shell dependency) |
 | Python | Chaquopy (bionic CPython 3.12) |
-| Node.js | nodejs-mobile v18 (opt-in) |
-| Billing | Google Play Billing v7 |
+| Node.js | nodejs-mobile v18 (optional build flag, not in the current Play build) |
+| Billing | Google Play Billing v8 |
 | Sync | Google Drive REST API (user's own account) |
 | Deploy | Netlify API |
 | Crash & Analytics | Firebase Crashlytics + Analytics (separate opt-out toggles) |
