@@ -553,22 +553,39 @@ time**. It's computed on the device and never sent anywhere.
 | **Git & GitHub** | Commit name/email; GitHub tokens |
 | **Deploy** | Netlify access token |
 | **Feedback → Send Feedback** | Report a bug, request a feature, or give feedback |
-| **About** | Version, open-source licenses, Privacy Policy, Contact Support |
+| **About** | Version, open-source licenses, Privacy Policy, **Support Toroid Studio** (optional donations), Contact Support |
 
 About the two **Privacy** switches: they're independent, on by default, and
-never include file contents, API keys or tokens. **In the current build no
-crash-reporting or analytics service is connected**, so the switches control
-something that isn't running yet — they're there so your choice is already
-respected when one is.
+never include file contents, API keys or tokens. When on, crash reports
+(**Firebase Crashlytics**) and anonymous usage analytics (**Firebase
+Analytics**) may be collected and sent to Google's Firebase; turn a switch off
+and that collection stops.
 
 **Send Feedback** lets you pick a category, describe the issue, optionally
 attach a screenshot (taken when you tap the button, before the form opens) and
 shows exactly what will be sent: your text, the category, an anonymous install
 ID and coarse device/app info (app version, Android version, device model,
 which runtimes are on, theme). It never includes file contents, API keys or
-tokens. *In the current build feedback is not yet connected to a server — the
-form works and confirms, but for now **Settings → About → Contact Support**
-(email) is the way to reach us.*
+tokens. Submissions are stored in Firebase (Google Firestore); you can still
+also reach us by email at **Settings → About → Contact Support**.
+
+### Support Toroid Studio (optional donations)
+
+The **Support Toroid Studio** page is one tap away: use the ❤ card at the top of
+**Settings**, the **⋮ menu** in the editor, or the command palette (search
+"Support"). It's also linked under **Settings → About**. It is entirely
+voluntary:
+
+- **Three one-time tiers** — Small Coffee (suggested $1.99), Pizza Slice
+  ($4.99) and Rocket Fuel ($9.99) — are paid through **Google Play**. You can
+  donate more than once. Toroid Studio never sees your payment details.
+- After a successful donation you get a thank-you message. **Nothing else
+  changes**: donations don't unlock any feature and are **not** a Pro
+  subscription — every feature works the same for everyone.
+
+*In the current build the Play donation products aren't published yet, so
+tapping a tier tells you in-app donations aren't available yet. They switch
+on once the maintainer sets them up.*
 
 The full legal text is in the **Privacy Policy** (Settings → About).
 
@@ -751,8 +768,5 @@ Other things to check:
   only some builds include.
 - **Cloud Sync** requires Pro, which isn't available yet.
 - **Codebase questions** use keyword ranking, not embeddings.
-- **Crash reporting, analytics and feedback delivery** are not connected to a
-  server in the current build.
 - AI quality, speed and availability depend on the provider and model you choose,
   and free models can be busy.
-  
