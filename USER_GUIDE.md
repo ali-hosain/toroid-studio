@@ -2,7 +2,7 @@
 
 Toroid Studio is a code editor for Android with an AI pair-programmer, an agent
 that can make multi-file changes (with your approval), a built-in terminal with
-real Python and Node.js, and Git. This guide covers everything from first launch
+real Python (Node.js only in builds that include it), and Git. This guide covers everything from first launch
 to troubleshooting.
 
 > **Short on time?** Read [Getting Started](#1-getting-started), then skim the
@@ -92,7 +92,8 @@ folder** to copy it into a Toroid Project.
 
 **To make a project:** ☰ → **Projects** → **New** → name it and choose a
 template — *Empty*, *Python script*, *Node.js script* or *Static web page* →
-**Create**.
+**Create**. (*Node.js script* only runs in builds that include the Node runtime;
+the Google Play build does not.)
 
 ### A quick tour of the screen
 
@@ -375,6 +376,8 @@ programs inside the app's private sandbox, starting in your project's folder.
   the standard library including `ssl`/HTTPS, `sqlite3` and `hashlib`.
 - **Node.js** (v18) is real but **optional and off by default**, and only in
   builds that include it: `node app.js`. Enable it in **Settings → Runtimes**.
+  **The Google Play version does not include Node.js**, so JavaScript can't be
+  run there yet; it is planned for a future update.
 
 ### Running a file
 
@@ -516,7 +519,9 @@ every save. Files with no bundled formatter are silently skipped.
 ### Project templates
 
 **☰ → Projects → New** offers **Empty**, **Python script**, **Node.js script**
-and **Static web page**; the script templates come ready to Run.
+and **Static web page**; the Python template comes ready to Run. The Node.js
+template needs the optional Node runtime, which the Google Play build does not
+include.
 
 ### Home-screen widget
 
@@ -562,7 +567,8 @@ Analytics**) may be collected and sent to Google's Firebase; turn a switch off
 and that collection stops.
 
 **Send Feedback** lets you pick a category, describe the issue, optionally
-attach a screenshot (taken when you tap the button, before the form opens) and
+attach a screenshot (captured when you tap the button, before the form opens,
+but **never sent unless you tap "Attach screenshot"**) and
 shows exactly what will be sent: your text, the category, an anonymous install
 ID and coarse device/app info (app version, Android version, device model,
 which runtimes are on, theme). It never includes file contents, API keys or
