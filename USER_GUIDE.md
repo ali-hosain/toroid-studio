@@ -88,7 +88,9 @@ Toroid Studio works with two kinds of workspace:
 | Terminal, run, debug, pip, Git, Agent, Cloud Sync, Deploy | **Yes** | No — these need a real project path |
 
 If you opened a folder and want the full toolset, use **☰ → Projects → Import
-folder** to copy it into a Toroid Project.
+folder** to copy it into a Toroid Project. It is a **copy**: later edits stay in
+the project, and the original folder is unchanged until you use **Export to
+folder** (see [Manage projects](#manage-projects)).
 
 **To make a project:** ☰ → **Projects** → **New** → name it and choose a
 template — *Empty*, *Python script*, *Node.js script* or *Static web page* →
@@ -101,9 +103,10 @@ the Google Play build does not.)
 · **⚡** command palette · **💾** save (when there are unsaved changes) · **▶**
 run the current file · split-editor icon · terminal icon · **⋮** more.
 
-**⋮ menu:** Save all · Go to Definition · Back · Generate tests (AI) · Generate
-docstring (AI) · Run with Debugger · Format Document · Settings. (Items appear
-only when they apply to the open file.)
+**⋮ menu:** Save all · Go to Definition · Rename Symbol · Back (definition) ·
+Generate tests (AI) · Generate docstring (AI) · Run with Debugger · Format
+Document · Settings · Support Toroid Studio. (Items appear only when they apply
+to the open file.)
 
 **Side panel (☰)** has a column of icons — each is a panel:
 
@@ -119,7 +122,11 @@ only when they apply to the open file.)
 | Robot | **Agent** | AI agent for multi-file changes |
 | Bug | **Debug** | Variables and call stack while debugging |
 
-Tap **Back** to close the panel.
+Tap outside the panel (or press Back) to close it.
+
+**First-run tour:** right after the welcome screen, a short 4-step tour points
+out the main toolbar buttons. Replay it any time from **Settings → Privacy →
+Replay the toolbar tour**.
 
 ---
 
@@ -165,6 +172,14 @@ Show two tabs at once, side by side or stacked, and drag the divider to resize
 *Try it:* open two files, then tap the split icon in the top bar — or **⚡ →
 Split Editor** / **Disable Split Editor**.
 
+### Preview HTML
+
+Open an `.html` file in a project and tap **▶ Run**: instead of the terminal, an
+**in-app preview** opens and loads the page's CSS, JavaScript and images the way
+a desktop browser would. Use **Reload** after editing and **Back** to return.
+To view the site in Chrome instead, use the
+[local web server](#local-web-server).
+
 ### Multi-cursor
 
 **Not available.** The editor component Toroid Studio is built on doesn't offer
@@ -189,8 +204,13 @@ and code blocks; each code block has **Copy** and **Insert** buttons — Insert
 puts it into the editor at the caret. Three **quick actions** sit above the box: **Explain this file**,
 **Explain selection** and **Fix an error** (paste the error into the box first).
 
-Tap **+** (top of the panel) to start a fresh chat, and the **stop** button to
-cancel a reply that's in progress.
+Tap **New chat** (top of the panel) to start a fresh chat, and the **stop**
+button to cancel a reply that's in progress. **Long-press** any message to select
+and copy its text.
+
+Every chat is saved on the device. Tap the **history (clock) icon** to open
+**Assistant History**: search past chats, tap one to reopen and continue it, or
+delete it. Starting a new chat never deletes the old one.
 
 ### Inline completions ("ghost text")
 
@@ -218,13 +238,26 @@ and continues once you respond. It has four tools:
 | `write_file` | Creates or changes a file | **Yes** |
 | `run_terminal_command` | Runs a shell command in your project | **Yes** |
 
-**"Approval-gated" means the agent can never change your project on its own.**
-Before any write or command runs, the panel shows an **"Approve this action?"**
-card — a diff for a file change or the exact command — and waits. **Approve**
-runs it; **Reject** skips it and the agent carries on. **Stop run** ends the
-whole run. Reading files is automatic because it changes nothing.
+**"Approval-gated" means the agent can't change your project on its own** (unless
+you turn on auto-approve, below). Before any write or command runs, the panel
+shows an **"Approve this action?"** card — a diff for a file change or the exact
+command — and waits. **Approve** runs it; **Reject** skips it and the agent
+carries on. **Stop run** ends the whole run. Reading files is automatic because
+it changes nothing.
 
 Example task: *"add a --verbose flag to main.py and update the README"*.
+
+**Follow-ups and history.** When a run finishes, the box changes to *"Continue
+the conversation"* — type a follow-up and tap **Send**; the agent remembers the
+earlier work. **New run** starts fresh. Every run is saved on the device: the
+**history (clock) icon** opens **Agent History**, where you can search, reopen
+and continue, or delete runs. Runs survive closing the app.
+
+**Auto-approve (optional, off by default).** *Settings → AI → Agent: auto-approve
+file changes.* When on, the agent writes files and runs commands **without
+asking**; each action still appears in the run, marked *auto-approved*, so you
+can review it afterwards — but nothing stops it in advance. Only turn it on for a
+project you can easily revert (for example one under Git).
 
 Agent mode needs a model that supports **tool use**. Claude models do; some
 free OpenRouter models don't (the model list marks these "no tool use").
@@ -322,7 +355,11 @@ isn't sent anywhere for it.
 - **Autocomplete.** A completion list pops up as you type (Python uses *jedi*);
   tap an item to insert it.
 - **Go to definition.** Put the caret on a name → **⋮ → Go to Definition**. Use
-  **⋮ → Back** to return to where you were.
+  **⋮ → Back (definition)** to return to where you were.
+- **Rename symbol.** Put the caret on a variable, function or class → **⋮ →
+  Rename Symbol** (or **⚡ → Rename Symbol**) → type the new name. Every use **in
+  the current file** is renamed; the change is shown first and only applied after
+  you **Approve**. Save the file before renaming.
 
 **Languages:** Python (`.py`, `.pyi`) works out of the box. **JavaScript /
 TypeScript** (`.js`, `.jsx`, `.ts`, `.tsx`, …) needs the optional **Node.js
@@ -365,7 +402,8 @@ programs inside the app's private sandbox, starting in your project's folder.
 
 - Tap **+** (*New terminal*) to open another shell; each one is a tab along the
   top. Close one with its **×**, and hide the whole panel with the **⌄** arrow
-  (*Hide terminal*). **clear** wipes the screen.
+  (*Hide terminal*). **clear** wipes the screen, and the red **^C** button stops
+  the command that's running (like Ctrl+C).
 - It is a **line-based terminal with colour support**, not a full terminal
   emulator — programs that redraw the whole screen (`vim`, `htop`, `less`)
   won't display correctly, and there is no SSH.
@@ -373,7 +411,9 @@ programs inside the app's private sandbox, starting in your project's folder.
 ### Python and Node.js
 
 - **Python 3.12** is real and bundled: `python3 script.py`, `python3 -c "…"`, and
-  the standard library including `ssl`/HTTPS, `sqlite3` and `hashlib`.
+  the standard library, including modules with native code such as `math`,
+  `json`, `socket`, `datetime`, `ssl`/HTTPS, `sqlite3` and `hashlib`. (`python`
+  works as well as `python3`.)
 - **Node.js** (v18) is real but **optional and off by default**, and only in
   builds that include it: `node app.js`. Enable it in **Settings → Runtimes**.
   **The Google Play version does not include Node.js**, so JavaScript can't be
@@ -382,8 +422,25 @@ programs inside the app's private sandbox, starting in your project's folder.
 ### Running a file
 
 The **▶ Run** button (top bar) saves the file and runs it in the terminal:
-`python3` for `.py`, `node` for `.js`/`.mjs`/`.cjs`, `sh` for `.sh`. Files of
-other types show *"Don't know how to run …"*. Run works on project files.
+`python3` for `.py`, `node` for `.js`/`.mjs`/`.cjs`, `sh` for `.sh`. On an
+`.html` file it opens the [in-app preview](#preview-html) instead. Files of other
+types show *"Don't know how to run …"*. Run works on project files.
+
+### Local web server
+
+Opening `index.html` straight from your phone's storage (for example from the
+Files app) shows the page **without its CSS and JavaScript** — Android only gives
+the browser that one file, not the folder around it. To see a website properly in
+Chrome, serve it from the app:
+
+1. Open the project, then **⚡ → Start Web Server (localhost:8000)**.
+2. The terminal runs `python3 -m http.server 8000` in the project folder, and
+   Chrome opens **`http://localhost:8000`** a moment later.
+3. **⚡ → Open localhost:8000 in Browser** reopens it; **⚡ → Stop Web Server**
+   (or **^C** in the terminal) stops it.
+
+The server is only reachable from your own phone. You can also type the command
+yourself in the terminal.
 
 ### Python packages (pip)
 
@@ -421,8 +478,23 @@ AI**) and tap **Commit**, or **Commit & Push**.
 The **Pull** and **Push** icons at the top of the panel talk to `origin`. They
 need a **GitHub personal access token**: tap **Add GitHub token for push** or go
 to **Settings → Git & GitHub**, enter the host (default `github.com`), your
-username (optional) and the token. It's stored encrypted and is only sent to
-that host. You can also set your commit **name and email** there.
+username (optional) and the token, and tap **Save token**. It's stored encrypted
+and is only sent to that host. Saving a token for the same host again replaces
+the old one. Set your commit **name and email** there too (**Save identity**) —
+otherwise commits use a placeholder name.
+
+**Which token?** At github.com → Settings → Developer settings → Personal access
+tokens:
+
+- **Fine-grained token:** under *Repository access* choose the repository (or all
+  repositories), and under *Permissions → Contents* choose **Read and write**.
+  Without that, push fails with *Access denied*.
+- **Classic token:** tick the **`repo`** scope.
+
+The repository must already exist on GitHub (create it empty — no README — if
+you're pushing a new project). If something fails, the message ends with
+**Details:** — GitHub's own reason, e.g. *git-receive-pack not permitted* (the
+token can't write to that repo).
 
 ### Branches and merging
 
@@ -442,8 +514,9 @@ out of the merge entirely.
 ### Stash and history
 
 **Stash** shelves your uncommitted work so you can switch tasks; an optional
-message helps you find it later; **Apply** brings it back. **History** lists past
-commits, labelled with the branch they belong to.
+message helps you find it later; **Apply** brings it back and keeps the stash,
+**Pop** brings it back and removes it, **Drop** discards it. **History** lists
+past commits, labelled with the branch they belong to.
 
 ---
 
@@ -469,16 +542,26 @@ Google Drive** — never to a Toroid Studio server. It uses Google's narrow
 - If you see *"Sign-in expired — sign in again to keep syncing"*, just sign in
   again.
 
-### Deploy to Netlify
+### Deploy to Netlify or Vercel
 
-Publish a simple static website to **your own Netlify account**.
+Publish a simple static website to **your own Netlify or Vercel account**.
 
-1. Get a Netlify **personal access token** at
-   `app.netlify.com/user/applications` and save it in **Settings → Deploy**
-   (encrypted on the device).
-2. Open **☰ → Projects** and tap the **cloud-upload icon** on the project.
-3. Tap **Deploy**. When it finishes you'll see **"Live at …"** with the URL;
-   **Redeploy** publishes again.
+1. Get a token and save it in **Settings → Deploy** (encrypted on the device):
+   - **Netlify:** a personal access token from `app.netlify.com/user/applications`.
+   - **Vercel:** an access token from `vercel.com/account/tokens`.
+2. Open **☰ → Projects** and tap the **Deploy (cloud-upload) icon** on the
+   project.
+3. Choose **Netlify** or **Vercel** and tap **Deploy**. The log shows each step
+   (uploading files, building, *READY*).
+4. When it finishes you'll see **"Live at …"** with **Copy** and **Open**
+   buttons. **Redeploy** publishes your latest changes to the same site.
+
+**Which link to share:** "Live at" is the **public** address anyone can open
+(for Vercel, the project's production domain, e.g.
+`your-project-xxxx.vercel.app`). Vercel also creates a separate link for each
+deployment, shown in the log as *"Deployment URL (may require Vercel login)"* —
+Vercel protects those by default, so other people get a login page. Share the
+"Live at" link.
 
 Deploy only appears for projects that look like a **plain static site**: an
 `index.html` at the top level and **no build tooling** (no `package.json`,
@@ -492,9 +575,10 @@ No Toroid Studio server is involved.
 ### Command palette
 
 Tap **⚡** in the top bar and type. It can open any panel, run/format/save the
-file, go to definition, toggle the terminal or split view, open Settings, create
-files and folders, switch between open tabs and projects, and insert snippets.
-Commands that don't apply right now are greyed out.
+file, go to definition or rename a symbol, start or stop the
+[local web server](#local-web-server), toggle the terminal or split view, open
+Settings, create files and folders, switch between open tabs and projects, and
+insert snippets. Commands that don't apply right now are greyed out.
 
 ### Snippets
 
@@ -522,6 +606,21 @@ every save. Files with no bundled formatter are silently skipped.
 and **Static web page**; the Python template comes ready to Run. The Node.js
 template needs the optional Node runtime, which the Google Play build does not
 include.
+
+### Manage projects
+
+In **☰ → Projects**, each project row has icons for:
+
+- **Deploy** (static sites only) — see [Deploy](#deploy-to-netlify-or-vercel).
+- **Cloud sync** (Pro) — see [Cloud Sync](#cloud-sync-pro).
+- **Export to folder** — copy the project to a folder on your phone (for example
+  to open it in another app).
+- **Share as .zip** — send the whole project as one `.zip` file.
+- **Delete project** — permanently deletes the project's files from this device
+  (you're asked first).
+
+**Close project** returns to the empty start screen; **Import folder** turns the
+currently opened folder into a project (a copy).
 
 ### Home-screen widget
 
@@ -553,12 +652,18 @@ time**. It's computed on the device and never sent anywhere.
 | **Privacy → Send crash reports** | Opt-out switch for crash reports |
 | **Privacy → Send anonymous usage analytics** | Opt-out switch for usage analytics |
 | **Show the welcome screen again** | Replays the first-run screen |
+| **Replay the toolbar tour** | Replays the 4-step toolbar tour |
 | **AI → Provider / key / model** | See [AI Features](#3-ai-features) |
 | **AI → Inline AI completions** | Ghost-text suggestions on/off |
+| **AI → Agent: auto-approve file changes** | Off by default; lets the agent write files and run commands without asking (see [Agent mode](#agent-mode-and-the-approval-gate)) |
 | **Git & GitHub** | Commit name/email; GitHub tokens |
-| **Deploy** | Netlify access token |
+| **Deploy** | Netlify and Vercel access tokens |
 | **Feedback → Send Feedback** | Report a bug, request a feature, or give feedback |
 | **About** | Version, open-source licenses, Privacy Policy, **Support Toroid Studio** (optional donations), Contact Support |
+
+Every button in Settings (Save key, Save token, Save identity, Remove, Re-check,
+Refresh model list…) confirms with a short message at the bottom of the screen —
+for example *"Token saved for github.com"* — or tells you what went wrong.
 
 About the two **Privacy** switches: they're independent, on by default, and
 never include file contents, API keys or tokens. When on, crash reports
@@ -614,7 +719,7 @@ Your code stays on your device unless *you* use a feature that needs a service:
   models may log prompts, so avoid sending sensitive code to them.
 - **Git** talks to the remote you configured (e.g. GitHub). **pip** talks to
   PyPI. **Cloud Sync** uploads to *your* Google Drive. **Deploy** uploads to
-  *your* Netlify account.
+  *your* Netlify or Vercel account.
 - Your **API keys and tokens** are encrypted with the Android Keystore and never
   logged.
 - Toroid Studio has no accounts and no servers that receive your code. The
@@ -622,10 +727,11 @@ Your code stays on your device unless *you* use a feature that needs a service:
 
 **What does "approval-gated" mean?**
 Anything that would *change* your project — writing a file, running a command,
-or applying AI-generated tests/docstrings — is shown to you first as a diff or
-command, and only happens after you tap **Approve**. **Reject** skips it. The
-agent can read your files without asking (that changes nothing), but it cannot
-write or run anything without your say-so.
+renaming a symbol, or applying AI-generated tests/docstrings — is shown to you
+first as a diff or command, and only happens after you tap **Approve**.
+**Reject** skips it. The agent can read your files without asking (that changes
+nothing), but it cannot write or run anything without your say-so — unless you
+turn on **Agent: auto-approve file changes** in Settings → AI.
 
 **How much does AI cost?**
 Toroid Studio itself is free; you pay your AI provider for usage. Cost depends on
@@ -643,8 +749,8 @@ doesn't track spend.
 **Can I use it offline?**
 Mostly yes. **Offline:** editing, syntax highlighting, code intelligence
 (diagnostics, autocomplete, go-to-definition), the terminal with Python/Node,
-the debugger, search and replace, snippets, formatting, and local Git (stage,
-commit, branch, merge, stash, history). **Needs internet:** all AI features,
+the debugger, search and replace, snippets, formatting, HTML preview, the local
+web server, and local Git (stage, commit, branch, merge, stash, history). **Needs internet:** all AI features,
 cloning/pushing/pulling, `pip install`, Cloud Sync, Deploy, and refreshing
 OpenRouter's model list (the last list is cached for 24 hours).
 
@@ -665,6 +771,12 @@ It runs on Android 8.0+ generally. Native components (Python) are built for
 **Why can't I run/commit/debug in my opened folder?**
 Those need a real project folder. Use **☰ → Projects → Import folder** to copy it
 into a Toroid Project. See [Your first project](#your-first-project).
+
+**Why does my HTML page show without its CSS when I open it from the Files app?**
+Android gives the browser only that one file, so it can't load the CSS and
+JavaScript next to it. Use ▶ on the `.html` file for the in-app preview, or
+**⚡ → Start Web Server** to open it in Chrome — see
+[Local web server](#local-web-server).
 
 **Where do I report a bug or suggest a feature?**
 **Settings → Feedback → Send Feedback**, or **Settings → About → Contact
@@ -724,8 +836,14 @@ Other things to check:
 - **"Source control works on Toroid Projects":** you opened a plain folder.
   Import it (**☰ → Projects → Import folder**) or clone into a new project.
 - **Push/pull is rejected or asks for auth:** save a personal access token under
-  **Settings → Git & GitHub** for the right host (and tick the `repo` scope for
-  private repositories).
+  **Settings → Git & GitHub** for the right host — see
+  [Which token?](#push-and-pull).
+- **"Access denied … Details: git-receive-pack not permitted":** the token works
+  but can't write to that repository. For a fine-grained token, add the
+  repository under *Repository access* and set **Contents: Read and write**.
+- **"Access denied" and the repository is new:** check that it exists on GitHub
+  and that the remote URL (Git panel → **Change**) is spelled exactly right.
+- **"Network error":** the phone couldn't reach GitHub — check Wi-Fi/mobile data.
 - **"no remote":** add one with **Add remote** in the Git panel.
 - **Merge stopped on conflicts:** resolve each file in the conflict screen, then
   commit — or **Abort**.
@@ -742,7 +860,13 @@ Other things to check:
 - **A program looks garbled** (`vim`, `htop`, `less`): the terminal isn't a full
   terminal emulator; use non-interactive commands.
 - **▶ says "Don't know how to run":** Run supports `.py`, `.js`, `.mjs`, `.cjs`
-  and `.sh`.
+  and `.sh` (and opens a preview for `.html`).
+- **`ModuleNotFoundError: No module named 'math'`** (or `_socket`, `_datetime`…):
+  you're on an older version of the app in which Python's built-in native modules
+  weren't installed. Update the app.
+- **`OSError: Address already in use` when starting the web server:** a server is
+  already running on port 8000 — use it, or stop it first (**⚡ → Stop Web
+  Server** or **^C**).
 
 ### Other common problems
 
@@ -757,6 +881,8 @@ Other things to check:
   (Black = Python, Prettier = JS/TS with Node).
 - **Deploy icon missing:** the project isn't a plain static site (needs a
   top-level `index.html` and no `package.json` or similar).
+- **The Vercel link asks me to log in:** you opened the per-deployment URL from
+  the log. Use the **"Live at"** link instead — that's the public one.
 - **Something crashed or looks wrong:** please tell us — **Settings → Feedback →
   Send Feedback** or **Settings → About → Contact Support**, with the steps to
   reproduce.
