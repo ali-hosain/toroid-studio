@@ -29,7 +29,7 @@
 <body>
 
   <h1>Privacy Policy for Toroid Studio</h1>
-  <p class="updated">Effective date: September 26, 2026 &nbsp;·&nbsp;
+  <p class="updated">Effective date: October 3, 2026 &nbsp;·&nbsp;
      Developer: Ali Hosain &nbsp;·&nbsp;
      App: Toroid Studio</p>
 
@@ -44,9 +44,24 @@
   <h2>1. Your code and files</h2>
   <p>The App never uploads, transmits, or stores the content of your files
   on any Toroid Studio server. All editing, running, and debugging happens
-  locally on your device. The only exception is if you explicitly enable
-  Cloud Sync (see Section 4) or explicitly send code as context to the AI
-  features you've configured (see Section 3).</p>
+  locally on your device. Your files leave the device only when you
+  explicitly use a feature that sends them somewhere you chose:</p>
+  <ul>
+    <li><strong>AI features</strong> &mdash; relevant code is sent to your
+    selected AI provider (see Section 3).</li>
+    <li><strong>Cloud Sync</strong> &mdash; files are uploaded to your own
+    Google Drive (see Section 4).</li>
+    <li><strong>Git</strong> &mdash; when you clone, pull or push, the App
+    exchanges repository data directly with the Git remote you configured
+    (for example GitHub), using your own credentials.</li>
+    <li><strong>Deploy</strong> &mdash; when you deploy a project, its files
+    are uploaded directly to your own Netlify or Vercel account (see
+    Section 9).</li>
+  </ul>
+  <p>Your AI Assistant chats and Agent run history are saved only on your
+  device so you can search and continue them; they are never uploaded to any
+  Toroid Studio server, and you can delete them in the app. Uninstalling the
+  App removes them.</p>
 
   <h2>2. API key storage (bring your own key)</h2>
   <p>Toroid Studio's AI features (chat, inline completions, agentic edits,
@@ -64,8 +79,10 @@
     as any API client would &mdash; never through Toroid Studio servers.</li>
   </ul>
   <p>The same on-device, encrypted storage approach is used for any GitHub
-  personal access tokens and Netlify personal access tokens you add for Git
-  and deployment features.</p>
+  personal access tokens, Netlify personal access tokens and Vercel access
+  tokens you add for Git and deployment features. Each token is sent only to
+  the service it belongs to (for example a GitHub token only to GitHub, a
+  Vercel token only to Vercel's API).</p>
 
   <h2>3. AI features</h2>
   <p>When you use an AI feature, relevant context (such as the open file, a
@@ -80,8 +97,14 @@
   forwards your request to the model provider behind the model ID you choose
   (for example a free community-hosted model), and that provider's data
   handling and logging practices apply in addition to OpenRouter's, so check
-  them before sending sensitive code. Agentic Mode never applies a file change
-  without your explicit on-screen approval.</p>
+  them before sending sensitive code.</p>
+  <p>By default, Agent mode never applies a file change or runs a command
+  without your explicit on-screen approval. An optional setting,
+  <strong>Settings &rarr; AI &rarr; "Agent: auto-approve file changes"</strong>
+  (off by default), lets the Agent apply changes and run commands in your
+  project without asking each time; every such action is still listed in the
+  App so you can review it. Turning it on does not change what data is sent to
+  your AI provider.</p>
 
   <h2>4. Cloud Sync (optional)</h2>
   <p>Cloud Sync is an opt-in feature, off by default, that must be enabled
@@ -130,8 +153,8 @@
     or account identifier, and no sign-in or account is required.</li>
   </ul>
   <p>Feedback submissions never include file contents, API keys, or
-  Git/Netlify tokens. You can review exactly what will be sent before
-  submitting.</p>
+  Git, Netlify or Vercel tokens. You can review exactly what will be sent
+  before submitting.</p>
   <p>Feedback submissions are stored in Google Firebase (Cloud Firestore),
   which is operated by Google.</p>
 
@@ -160,14 +183,31 @@
   The App displays no third-party advertising.</p>
 
   <h2>9. Data sharing</h2>
-  <p>We do not sell your data. Data is shared only as described above: with
-  Anthropic or OpenRouter (whichever you select for AI features, via your own
-  key), with Google
-  (only if you enable Cloud Sync, to your own Drive), with Netlify (only
-  if you use the Deploy feature, via your own token), with Google Play
-  (only if you make a donation, as described in Section 7), and with Google
-  Firebase (crash reports and analytics unless you opt out, and feedback you
-  choose to send, as described in Sections 5 and 6).</p>
+  <p>We do not sell your data. Data is shared only as described above, and
+  only with the services you choose to use:</p>
+  <ul>
+    <li><strong>Anthropic or OpenRouter</strong> &mdash; whichever you select
+    for AI features, via your own key.</li>
+    <li><strong>Google Drive</strong> &mdash; only if you enable Cloud Sync,
+    to your own Drive.</li>
+    <li><strong>Your Git remote (for example GitHub)</strong> &mdash; only when
+    you clone, pull or push, via your own token.</li>
+    <li><strong>Netlify or Vercel</strong> &mdash; only when you use the
+    Deploy feature, via your own token. A deployed site is public on the
+    internet at the address shown in the App, so only deploy files you intend
+    to publish. See
+    <a href="https://www.netlify.com/privacy/">Netlify's</a> and
+    <a href="https://vercel.com/legal/privacy-policy">Vercel's</a> privacy
+    policies.</li>
+    <li><strong>PyPI (the Python Package Index)</strong> &mdash; only when you
+    search for or install Python packages, which sends the package names to
+    pypi.org.</li>
+    <li><strong>Google Play</strong> &mdash; only if you make a donation, as
+    described in Section 7.</li>
+    <li><strong>Google Firebase</strong> &mdash; crash reports and analytics
+    unless you opt out, and feedback you choose to send, as described in
+    Sections 5 and 6.</li>
+  </ul>
 
   <h2>10. Children's privacy</h2>
   <p>Toroid Studio is not directed at children under 13, and we do not
@@ -189,9 +229,12 @@
     reports and usage analytics collected by Firebase are not linked to your
     identity. You can stop further collection at any time in
     <strong>Settings &rarr; Privacy</strong>.</li>
-    <li><strong>Code, API keys and tokens:</strong> these stay on your device
-    (except when you choose to use an AI feature), so there is nothing for us
-    to delete. Uninstalling the app removes them.</li>
+    <li><strong>Code, API keys, tokens and chat history:</strong> these stay
+    on your device (except when you choose to use an AI, Git, Cloud Sync or
+    Deploy feature, which sends data to the service you chose rather than to
+    us), so there is nothing for us to delete. Uninstalling the app removes
+    them. To remove a deployed site or pushed code, delete it in your own
+    Netlify, Vercel or GitHub account.</li>
     <li><strong>Timeline:</strong> we aim to complete verified requests within
     30 days.</li>
   </ul>
